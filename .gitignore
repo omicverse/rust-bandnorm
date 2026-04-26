@@ -6,4 +6,7 @@ __pycache__/
 .pytest_cache/
 build/
 dist/
-tests/data/*.tsv
+tests/data/scgad_input_pairs.tsv
+tests/data/scgad_raw.tsv
+tests/data/scgad_depth_norm.tsv
+tests/data/scgad_gad.tsv

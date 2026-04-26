@@ -28,7 +28,7 @@ RSCRIPT = "/scratch/users/steorra/env/CMAP/bin/Rscript"
 def _ensure_reference():
     """Generate R reference if not already on disk."""
     needed = [DATA_DIR / f for f in
-              ("scgad_raw.tsv", "scgad_depth_norm.tsv", "scgad_gad.tsv")]
+              ("scgad_raw.tsv.gz", "scgad_depth_norm.tsv.gz", "scgad_gad.tsv.gz")]
     if all(p.exists() for p in needed):
         return
     DATA_DIR.mkdir(exist_ok=True)
@@ -41,8 +41,9 @@ def _ensure_reference():
 def _load_inputs():
     """Load scgad_df + mm9Annotations from the BandNorm .rda files via
     a one-shot Rscript that re-emits them as TSV."""
-    pairs_tsv = DATA_DIR / "scgad_input_pairs.tsv"
+    pairs_tsv = DATA_DIR / "scgad_input_pairs.tsv.gz"
     genes_tsv = DATA_DIR / "scgad_input_genes.tsv"
+    # Note: pairs are stored gzipped (~5 MB vs 76 MB raw).
     if not pairs_tsv.exists() or not genes_tsv.exists():
         DATA_DIR.mkdir(exist_ok=True)
         rscript = (
@@ -61,9 +62,9 @@ def _load_inputs():
 @pytest.fixture(scope="module")
 def reference():
     _ensure_reference()
-    raw = pd.read_csv(DATA_DIR / "scgad_raw.tsv", sep="\t").set_index("gene")
-    depth = pd.read_csv(DATA_DIR / "scgad_depth_norm.tsv", sep="\t").set_index("gene")
-    gad = pd.read_csv(DATA_DIR / "scgad_gad.tsv", sep="\t").set_index("gene")
+    raw = pd.read_csv(DATA_DIR / "scgad_raw.tsv.gz", sep="\t").set_index("gene")
+    depth = pd.read_csv(DATA_DIR / "scgad_depth_norm.tsv.gz", sep="\t").set_index("gene")
+    gad = pd.read_csv(DATA_DIR / "scgad_gad.tsv.gz", sep="\t").set_index("gene")
     return {"raw": raw, "depth": depth, "gad": gad}
 
 
