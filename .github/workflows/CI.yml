@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python: ['3.9', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Build + install
+        uses: PyO3/maturin-action@v1
+        with:
+          command: develop
+          args: --release
+          sccache: 'true'
+      - name: Install test deps
+        run: pip install pytest pandas numpy
+      - name: Parity tests (against R reference data shipped under tests/data/)
+        run: pytest -v -s tests/test_parity.py
+        shell: bash
