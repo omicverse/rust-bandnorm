@@ -1,0 +1,9 @@
+target/
+__pycache__/
+*.pyc
+*.so
+*.egg-info/
+.pytest_cache/
+build/
+dist/
+tests/data/*.tsv

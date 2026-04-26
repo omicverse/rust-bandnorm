@@ -1,0 +1,40 @@
+[build-system]
+requires = ["maturin>=1.4,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "bandnorm-rust"
+version = "0.1.0"
+description = "Rust port of BandNorm's scGAD + bandnorm normalization for single-cell Hi-C — bit-equivalent to the R reference, ~10-30× faster."
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+authors = [
+    {name = "Zehua Zeng", email = "starlitnightly@163.com"},
+]
+keywords = ["single-cell", "Hi-C", "scGAD", "BandNorm", "rust"]
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+dependencies = [
+    "numpy>=1.23",
+    "pandas>=1.5",
+    "scipy>=1.10",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7",
+]
+
+[tool.maturin]
+manifest-path = "rust/Cargo.toml"
+features = ["pyo3/extension-module"]
+module-name = "bandnorm_rust._rust"
+python-source = "python"
+include = [
+    { path = "LICENSE", format = ["sdist", "wheel"] },
+]

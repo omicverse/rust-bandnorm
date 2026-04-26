@@ -1,0 +1,23 @@
+[package]
+name = "bandnorm_rust"
+version = "0.1.0"
+edition = "2021"
+description = "Rust port of BandNorm scGAD + bandnorm normalization."
+license = "MIT"
+authors = ["Zehua Zeng <starlitnightly@163.com>"]
+
+[lib]
+name = "_rust"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = { version = "0.22", features = ["extension-module", "abi3-py39", "generate-import-lib"] }
+numpy = "0.22"
+ndarray = { version = "0.16", features = ["rayon"] }
+rayon = "1.10"
+ahash = "0.8"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
