@@ -1,4 +1,4 @@
-"""bandnorm-rust: Rust port of BandNorm scGAD + bandnorm normalization.
+"""bandnorm-rs: Rust port of BandNorm scGAD + bandnorm normalization.
 
 Drop-in replacement for the inner aggregation loops of
 https://github.com/sshen82/BandNorm — bit-equivalent (within f64
@@ -15,7 +15,7 @@ import numpy as np
 import pandas as pd
 
 try:
-    from bandnorm_rust._rust import (
+    from bandnorm_rs._rust import (
         py_scgad_compute as _scgad_compute,
         py_bandnorm_compute as _bandnorm_compute,
         set_num_threads as _set_num_threads,

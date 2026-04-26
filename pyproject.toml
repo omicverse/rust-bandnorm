@@ -3,7 +3,7 @@ requires = ["maturin>=1.4,<2.0"]
 build-backend = "maturin"
 
 [project]
-name = "bandnorm-rust"
+name = "bandnorm-rs"
 version = "0.1.0"
 description = "Rust port of BandNorm's scGAD + bandnorm normalization for single-cell Hi-C — bit-equivalent to the R reference, ~10-30× faster."
 readme = "README.md"
@@ -33,7 +33,7 @@ dev = [
 [tool.maturin]
 manifest-path = "rust/Cargo.toml"
 features = ["pyo3/extension-module"]
-module-name = "bandnorm_rust._rust"
+module-name = "bandnorm_rs._rust"
 python-source = "python"
 include = [
     { path = "LICENSE", format = ["sdist", "wheel"] },

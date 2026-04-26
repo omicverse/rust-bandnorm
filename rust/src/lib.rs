@@ -1,4 +1,4 @@
-// bandnorm-rust: Rust port of BandNorm scGAD + bandnorm.
+// bandnorm-rs: Rust port of BandNorm scGAD + bandnorm.
 //
 // Goal: bit-equivalent (within f64 epsilon) to the upstream R
 // implementation at https://github.com/sshen82/BandNorm.

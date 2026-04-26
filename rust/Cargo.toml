@@ -1,5 +1,5 @@
 [package]
-name = "bandnorm_rust"
+name = "bandnorm_rs"
 version = "0.1.0"
 edition = "2021"
 description = "Rust port of BandNorm scGAD + bandnorm normalization."

@@ -13,7 +13,7 @@ continues to be available at https://github.com/sshen82/BandNorm.
 Two functions, mirroring `BandNorm/R/scGAD.R` and `BandNorm/R/bandnorm.R`:
 
 ```python
-import bandnorm_rust as bn
+import bandnorm_rs as bn
 
 # scGAD: gene × cell matrix from contact pairs.
 gad = bn.scgad(hic_df, genes, resolution=10_000, depth_norm=True)
@@ -43,7 +43,7 @@ cd rust-bandnorm
 maturin develop --release
 ```
 
-PyPI release coming soon (`pip install bandnorm-rust`).
+PyPI release coming soon (`pip install bandnorm-rs`).
 
 ## Layout
 
@@ -52,7 +52,7 @@ rust-bandnorm/
 ├── pyproject.toml
 ├── rust/Cargo.toml
 ├── rust/src/lib.rs              # ~250 LoC: gene index + scGAD + bandnorm
-├── python/bandnorm_rust/        # Python wrapper
+├── python/bandnorm_rs/        # Python wrapper
 └── tests/
     ├── reference_scgad.R        # R reference generator
     └── test_parity.py           # pytest parity vs R
